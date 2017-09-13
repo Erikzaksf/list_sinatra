@@ -1,10 +1,13 @@
+require('pry')
+
 class Item
   @@list = []
   attr_reader :id
-  attr_accessor :name
+  attr_accessor :name, :rank
 
-  def initialize(name)
+  def initialize(name, rank)
     @name = name
+    @rank = rank
     @id = @@list.length + 1
   end
 
@@ -18,7 +21,7 @@ class Item
   end
 
   def self.all()
-    @@list
+    @@list.sort {|item1, item2| item1.rank <=> item2.rank}
   end
 
   def save()

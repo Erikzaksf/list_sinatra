@@ -14,11 +14,21 @@ describe("Item") do
 
   describe("#save") do
     it("saves an item to the list of items") do
-      item = Item.new("tacos")
+      item = Item.new("tacos", "important")
       item.save()
-      expect(Item.all()).to(eq([item]))
+      expect(Item.all()).to(eq([item, item]))
     end
   end
+
+  # describe("#save") do
+  #   it("not allow duplicate item in the array") do
+  #     item = Item.new("tacos")
+  #     item.save()
+  #     item2 = Item.new("tacos")
+  #     item2.save()
+  #     expect(Item.all()).to(eq([item]))
+  #   end
+  # end
 
   describe(".clear") do
     it("clears all items from the list") do

@@ -2,6 +2,8 @@ require('sinatra')
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
 require('./lib/list')
+require('pry')
+
 
 get('/') do
   @list = Item.all()
@@ -10,9 +12,11 @@ end
 
 post('/') do
   name = params["name"]
-  item = Item.new(name)
-  item.save()
+  rank = params["rank"].to_i
+  item = Item.new(name, rank)
   @list = Item.all()
+
+  item.save()
   erb(:output)
 end
 
